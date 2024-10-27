@@ -1,5 +1,5 @@
 import { LayoutView } from "@/components/layout";
-
+import React from "react";
 const NotFound = () => {
   return (
     <LayoutView>
