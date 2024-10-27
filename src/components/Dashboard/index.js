@@ -61,8 +61,8 @@ export const Dashboard = () => {
 
   return (
     <LayoutView>
-      <section className="flex flex-col gap-20 p-2">
-        <div className="grid grid-cols-3 gap-10">
+      <section className="flex flex-col gap-10 lg:gap-20 p-2">
+        <div className="grid lg:grid-cols-3 gap-4 lg:gap-10">
           <DataCard
             title={"Total Capsules"}
             data={capsules?.items?.length}
@@ -86,7 +86,7 @@ export const Dashboard = () => {
           />
         </div>
         <FormikProvider value={formik}>
-          <div className="flex gap-6 w-full max-w-4xl">
+          <div className="grid lg:grid-cols-2 xl:grid-cols-4 gap-6 w-full max-w-5xl">
             <Field
               placeholder="Filter by status"
               name='status'

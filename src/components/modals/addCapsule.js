@@ -38,7 +38,7 @@ export const AddCapsuleModal = () => {
   return (
     <>
       <button
-        className="whitespace-nowrap rounded-lg px-6 bg-slate-300 text-slate-950"
+        className="whitespace-nowrap rounded-lg py-2 px-6 bg-slate-300 text-slate-950 flex-field"
         onClick={onOpen}
       >
         Add Filter
