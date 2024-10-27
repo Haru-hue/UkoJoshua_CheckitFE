@@ -1,4 +1,4 @@
-import { dateBodyTemplate, deleteTemplate, missionTemplate } from "@/constants/template";
+import { dateBodyTemplate, deleteTemplate, editTemplate, missionTemplate } from "@/constants/template";
 import { Column } from "primereact/column";
 import { DataTable } from "primereact/datatable";
 
@@ -11,8 +11,8 @@ export const Table = ({ data }) => {
       <Column field="status" header="Status" />
       <Column field="type" header="Type" />
       <Column body={missionTemplate} header="No. of Missions" />
+      <Column body={editTemplate} />
       <Column body={deleteTemplate} />
-      
     </DataTable>
   );
 };

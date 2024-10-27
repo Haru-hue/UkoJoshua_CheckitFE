@@ -1,3 +1,4 @@
+import { EditCapsuleModal } from "@/components/modals/editCapsule";
 import { deleteCapsule } from "@/store/features/capsuleSlice";
 import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
@@ -9,6 +10,10 @@ export const dateBodyTemplate = (rowData) => {
 export const missionTemplate = (rowData) => {
   return rowData?.missions?.length;
 };
+
+export const editTemplate = (rowData) => {
+  return <EditCapsuleModal rowData={rowData}/>
+}
 
 export const deleteTemplate = (rowData) => {
   const dispatch = useDispatch();

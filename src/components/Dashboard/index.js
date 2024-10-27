@@ -4,6 +4,7 @@ import { Table } from "../table/Table";
 import { useDispatch, useSelector } from "react-redux";
 import { addCapsule, fetchCapsules } from "@/store/features/capsuleSlice";
 import { LayoutView } from "../layout";
+import { AddCapsuleModal } from "../modals/addCapsule";
 
 export const Dashboard = () => {
   const [screen, setScreen] = useState("");
@@ -80,6 +81,7 @@ export const Dashboard = () => {
           />
           <input className="" placeholder="type" />
           <button onClick={testAddCapsule}>Filter</button>
+          <AddCapsuleModal/>
         </div>
         <Table data={listCapsules} />
       </section>

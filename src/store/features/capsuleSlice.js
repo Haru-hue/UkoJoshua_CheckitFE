@@ -22,7 +22,7 @@ const capsulesSlice = createSlice({
       }
     },
     updateCapsule: (state, action) => {
-      const index = state.items.findIndex((capsule) => capsule.capsule_id === action.payload.capsule_id);
+      const index = state.items.findIndex((capsule) => capsule.capsule_serial === action.payload.capsule_serial);
       if (index >= 0) state.items[index] = action.payload;
     },
     deleteCapsule: (state, action) => {
