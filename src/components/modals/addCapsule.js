@@ -5,14 +5,14 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { addCapsule } from "@/store/features/capsuleSlice";
 
-const validateSchema = Yup.object().shape({
+export const validateSchema = Yup.object().shape({
   capsule_id: Yup.string().required("Capsule ID is required"),
   original_launch: Yup.date().required("Date is required"),
 });
 
 export const AddCapsuleModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const today = new Date().toISOString().split("T")[0];
 
   const formik = useFormik({
@@ -24,10 +24,10 @@ export const AddCapsuleModal = () => {
     onSubmit: (values) => {
       const newCapsule = {
         capsule_id: values.capsule_id,
-        status: !values?.status?.trim() ? 'unknown' : values?.status,
+        status: !values?.status?.trim() ? "unknown" : values?.status,
         original_launch: values.original_launch,
-      }
-      dispatch(addCapsule(newCapsule))
+      };
+      dispatch(addCapsule(newCapsule));
       onClose();
     },
     validateOnChange: true,
@@ -37,7 +37,12 @@ export const AddCapsuleModal = () => {
 
   return (
     <>
-      <button onClick={onOpen}>Add Filter</button>
+      <button
+        className="whitespace-nowrap rounded-lg px-6 bg-slate-300 text-slate-950"
+        onClick={onOpen}
+      >
+        Add Filter
+      </button>
       <Modal
         header="Add Capsule"
         isOpen={isOpen}
@@ -51,23 +56,26 @@ export const AddCapsuleModal = () => {
               <label className="block text-gray-700 text-sm pb-1">
                 Capsule ID:*{" "}
               </label>
-              <Field name="capsule_id" placeholder="Capsule ID" />
+              <Field onBlur={formik.handleBlur}  name="capsule_id" placeholder="Capsule ID" />
+              {formik.touched.capsule_id && formik.errors.capsule_id && (
+                <p className="text-red-500 text-xs pt-1">{formik.errors.capsule_id}</p>
+              )}
             </div>
             <div>
               <label className="block text-gray-700 text-sm pb-1">
                 Status{" "}
               </label>
-              <Field as='select' placeholder='Select status' name='status'>
-                  <option disabled>Select status</option>
-                  <option value='active'>Active</option>
-                  <option value='destroyed'>Destroyed</option>
-                  <option value='retired'>Retired</option>
-                  <option value='unknown'>Unknown</option>
-                </Field>
+              <Field as="select" placeholder="Select status" name="status">
+                <option disabled>Select status</option>
+                <option value="active">Active</option>
+                <option value="destroyed">Destroyed</option>
+                <option value="retired">Retired</option>
+                <option value="unknown">Unknown</option>
+              </Field>
             </div>
             <div className="col-span-2">
               <label className="block text-gray-700 text-sm pb-1">
-                Capsule ID:*{" "}
+                Original Launch Date:*{" "}
               </label>
               <Field
                 type="date"
@@ -75,7 +83,11 @@ export const AddCapsuleModal = () => {
                 max={today}
                 name="original_launch"
                 placeholder="Capsule ID"
+                onBlur={formik.handleBlur}
               />
+              {formik.touched.original_launch && formik.errors.original_launch && (
+                <p className="text-red-500 text-xs pt-1">{formik.errors.original_launch}</p>
+              )}
             </div>
           </div>
         </FormikProvider>
@@ -87,7 +99,12 @@ export const AddCapsuleModal = () => {
           >
             Add User
           </button>
-          <button  className='bg-slate-500 text-slate-950 py-2 px-6 rounded-lg' onClick={onClose}>Cancel</button>
+          <button
+            className="bg-slate-500 text-slate-950 py-2 px-6 rounded-lg"
+            onClick={onClose}
+          >
+            Cancel
+          </button>
         </div>
       </Modal>
     </>

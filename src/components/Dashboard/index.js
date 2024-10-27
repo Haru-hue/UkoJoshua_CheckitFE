@@ -5,12 +5,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { addCapsule, fetchCapsules } from "@/store/features/capsuleSlice";
 import { LayoutView } from "../layout";
 import { AddCapsuleModal } from "../modals/addCapsule";
+import { Field, FormikProvider, useFormik } from "formik";
 
 export const Dashboard = () => {
   const [screen, setScreen] = useState("all");
-  const [listCapsules, setListCapsules] = useState([]);
   const capsules = useSelector((state) => state.capsules);
   const dispatch = useDispatch();
+
+  const formik = useFormik({
+    initialValues: {
+      status: "",
+      launch: "",
+      type: "",
+    },
+
+  })
 
   useEffect(() => {
     dispatch(fetchCapsules());
@@ -23,38 +32,32 @@ export const Dashboard = () => {
     (item) => item?.status === "destroyed"
   );
 
-  const newCapsule = {
-    capsule_id: "C101",
-    capsule_serial: "Dragon 1",
-    status: "active",
-  };
-
   const handleScreen = (name) => {
     setScreen(name);
   };
 
-  useEffect(() => {
-    switch (screen) {
-      case "active":
-        setListCapsules(
-          capsules?.items?.filter((item) => item?.status === "active")
-        );
-        break;
-      case "destroyed":
-        setListCapsules(
-          capsules?.items?.filter((item) => item?.status === "destroyed")
-        );
-        break;
-      default:
-        setListCapsules(capsules?.items);
-        break;
-    }
-  }, [screen, capsules]);
-
-  const testAddCapsule = () => {
-    console.log("Testing");
-    dispatch(addCapsule(newCapsule));
-  };
+  const filteredCapsules = capsules?.items.filter((capsule) => {
+    return (
+      (formik.values.status
+        ? capsule.status.toLowerCase().includes(formik.values.status.toLowerCase())
+        : true) &&
+      (formik.values.launch
+        ? capsule.original_launch &&
+          capsule.original_launch.includes(formik.values.launch)
+        : true) &&
+      (formik.values.type
+        ? capsule.type &&
+          capsule.type.toLowerCase().includes(formik.values.type.toLowerCase())
+        : true) &&
+      (screen === "active"
+        ? capsule.status.toLowerCase().includes("active")
+        : true) &&
+      (screen === "all" ? capsule : true) &&
+      (screen === "destroyed"
+        ? capsule.status.toLowerCase() === "destroyed"
+        : true)
+    );
+  });
 
   return (
     <LayoutView>
@@ -65,37 +68,38 @@ export const Dashboard = () => {
             data={capsules?.items?.length}
             onClick={() => handleScreen("all")}
             screen={screen}
-            cardKey={'all'}
+            cardKey={"all"}
           />
           <DataCard
             title={"Total Active Capsules"}
             data={activeCapsules?.length}
             onClick={() => handleScreen("active")}
             screen={screen}
-            cardKey={'active'}
+            cardKey={"active"}
           />
           <DataCard
             title={"Total Destroyed Capsules"}
             data={destroyedCapsules?.length}
             onClick={() => handleScreen("destroyed")}
             screen={screen}
-            cardKey={'destroyed'}
+            cardKey={"destroyed"}
           />
         </div>
-        <div className="flex gap-10">
-          <input
-            className="border py-2 pr-6 pl-3 rounded-md"
-            placeholder="status"
-          />
-          <input
-            className="border py-2 pr-6 pl-3 rounded-md"
-            placeholder="launch"
-          />
-          <input className="" placeholder="type" />
-          <button onClick={testAddCapsule}>Filter</button>
-          <AddCapsuleModal />
-        </div>
-        <Table data={listCapsules} />
+        <FormikProvider value={formik}>
+          <div className="flex gap-6 w-full max-w-4xl">
+            <Field
+              placeholder="Filter by status"
+              name='status'
+            />
+            <Field name='launch' type="date" />
+            <Field
+              placeholder="Filter by type"
+              name='type'
+            />
+            <AddCapsuleModal />
+          </div>
+        </FormikProvider>
+        <Table data={filteredCapsules} />
       </section>
     </LayoutView>
   );
