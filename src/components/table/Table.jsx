@@ -3,7 +3,7 @@ import { DataTable } from "primereact/datatable"
 
 export const Table = ({ data }) => {
     return (
-        <DataTable value={data}>
+        <DataTable value={data} paginator rows={5} >
             <Column field="capsule_id" header='Capsule ID'/>
             <Column field="capsule_serial" header='Capsule Name'/>
             <Column field="original_launch" header='Original Launch Date'/>
