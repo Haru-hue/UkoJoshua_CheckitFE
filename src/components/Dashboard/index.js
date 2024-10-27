@@ -7,7 +7,7 @@ import { LayoutView } from "../layout";
 import { AddCapsuleModal } from "../modals/addCapsule";
 
 export const Dashboard = () => {
-  const [screen, setScreen] = useState("");
+  const [screen, setScreen] = useState("all");
   const [listCapsules, setListCapsules] = useState([]);
   const capsules = useSelector((state) => state.capsules);
   const dispatch = useDispatch();
@@ -31,15 +31,19 @@ export const Dashboard = () => {
 
   const handleScreen = (name) => {
     setScreen(name);
-  }
+  };
 
   useEffect(() => {
     switch (screen) {
       case "active":
-        setListCapsules(capsules?.items?.filter((item) => item?.status === "active"));
+        setListCapsules(
+          capsules?.items?.filter((item) => item?.status === "active")
+        );
         break;
       case "destroyed":
-        setListCapsules(capsules?.items?.filter((item) => item?.status === "destroyed"));
+        setListCapsules(
+          capsules?.items?.filter((item) => item?.status === "destroyed")
+        );
         break;
       default:
         setListCapsules(capsules?.items);
@@ -56,18 +60,26 @@ export const Dashboard = () => {
     <LayoutView>
       <section className="flex flex-col gap-20 p-2">
         <div className="grid grid-cols-3 gap-10">
-          <DataCard title={"Total Capsules"} data={capsules?.items?.length} onClick={() => handleScreen('')} screen={screen} />
+          <DataCard
+            title={"Total Capsules"}
+            data={capsules?.items?.length}
+            onClick={() => handleScreen("all")}
+            screen={screen}
+            cardKey={'all'}
+          />
           <DataCard
             title={"Total Active Capsules"}
             data={activeCapsules?.length}
-            onClick={() => handleScreen('active')}
+            onClick={() => handleScreen("active")}
             screen={screen}
+            cardKey={'active'}
           />
           <DataCard
             title={"Total Destroyed Capsules"}
             data={destroyedCapsules?.length}
-            onClick={() => handleScreen('destroyed')}
+            onClick={() => handleScreen("destroyed")}
             screen={screen}
+            cardKey={'destroyed'}
           />
         </div>
         <div className="flex gap-10">
@@ -81,7 +93,7 @@ export const Dashboard = () => {
           />
           <input className="" placeholder="type" />
           <button onClick={testAddCapsule}>Filter</button>
-          <AddCapsuleModal/>
+          <AddCapsuleModal />
         </div>
         <Table data={listCapsules} />
       </section>
