@@ -9,20 +9,22 @@ const DropdownUser = () => {
   const dropdown = useRef(null);
   // close on click outside
   useEffect(() => {
-    const clickHandler = (target) => {
+    const clickHandler = (event) => {
       if (!dropdown?.current) return;
       if (
         !dropdownOpen ||
-        dropdown?.current?.contains(target) ||
-        trigger?.current?.contains(target)
-      )
+        dropdown?.current?.contains(event.target) ||
+        trigger?.current?.contains(event.target)
+      ) {
         return;
+      }
       setDropdownOpen(false);
     };
+  
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
-  });
-
+  }, [dropdownOpen]);
+  
   // close if the esc key is pressed
   useEffect(() => {
     const keyHandler = (keyCode) => {
@@ -66,7 +68,7 @@ const DropdownUser = () => {
         <ul className="flex flex-col gap-0 w-full">
           <li className="border-b border-stroke p-5">
             <Link
-              href="/profile"
+              href="https://www.linkedin.com/in/joshuedev/"
               className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-violet-500 lg:text-base"
             >
               <Icon className="text-black" icon="ph:user" />

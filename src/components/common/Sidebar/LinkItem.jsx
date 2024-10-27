@@ -1,24 +1,22 @@
-import { useAppSelector } from "@/store";
 import cn from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const LinkItem = (props) => {
-  const { title } = props;
-  const isSidebarOpen = useAppSelector((state) => state.sidebar.isOpen);
+  const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);
   const pathname = usePathname()
 
   return (
     <Link
       className={cn(`group relative flex items-center rounded-lg px-3 py-2 text-gray-3 duration-300 ease-in-out`, {
-        "text-indigo-500 font-semibold": pathname === props.href,
+        "bg-white text-stone-800": pathname === props.href,
         "hover:text-violet-500": pathname!== props.href,
-        'gap-2.5': isSidebarOpen
+        'justify-center': isSidebarOpen
       })}
       href={props.href}
     >
       {props.icon}
-      <p>{isSidebarOpen && title}</p>
     </Link>
   );
 };
