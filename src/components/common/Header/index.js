@@ -13,7 +13,7 @@ const Header = () => {
     <header className="top-0 flex w-fulldrop-shadow-1 dark:bg-boxdark dark:drop-shadow-none border-b">
       <div className="flex flex-grow items-center justify-between p-4 shadow-2 md:px-6 2xl:px-11">
         <Link href="https://checkitprocure.com/">
-          <Image src={'/logo_cropped.png'} className="" width={100} height={100} />
+          <Image src={'/logo_cropped.png'} className="" width={100} height={100} alt='logo' />
         </Link>
         <div className="flex items-center gap-6 w-full justify-end 2xsm:gap-7">
 
