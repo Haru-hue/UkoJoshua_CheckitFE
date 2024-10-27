@@ -1,8 +1,13 @@
 import { EditCapsuleModal } from "@/components/modals/editCapsule";
+import { ViewCapsuleModal } from "@/components/modals/viewCapsule";
 import { deleteCapsule } from "@/store/features/capsuleSlice";
 import dayjs from "dayjs";
 import { Tag } from "primereact/tag";
 import { useDispatch } from "react-redux";
+
+export const serialBodyTemplate = (rowData) => {
+  return <ViewCapsuleModal rowData={rowData}/>;
+};
 
 export const dateBodyTemplate = (rowData) => {
   return rowData?.original_launch
