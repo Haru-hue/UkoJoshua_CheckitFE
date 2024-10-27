@@ -12,7 +12,7 @@ const Sidebar = () => {
   return (
     <aside
       className={cn(
-        `absolute left-0 top-0 z-50 border-r bg-stone-400 text-white flex h-screen flex-col overflow-y-hidden transition-all duration-300 ease-linear lg:static lg:translate-x-0 `,
+        `absolute left-0 top-0 z-50 border-r dark:border-none bg-stone-400 text-white flex h-screen flex-col overflow-y-hidden transition-all duration-300 ease-linear lg:static lg:translate-x-0 `,
         {
           "w-40": isSidebarOpen,
           "w-20 max-lg:w-0": !isSidebarOpen,

@@ -1,26 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @import "primereact/resources/themes/lara-light-cyan/theme.css";
 
-/* :root {
+:root {
   --background: #ffffff;
   --foreground: #171717;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: rgb(39,41,44, 0.5);
     --foreground: #ededed;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
+.dark {
+  background: rgb(39,41,44);
+}
+
+.dark input, .dark select {
+  background: rgb(0, 0, 0, 0.5);
+  border: none;
+}
 
 body, html {
   font-family: 'Satoshi', sans-serif;

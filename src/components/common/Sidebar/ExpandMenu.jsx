@@ -34,14 +34,6 @@ const ExpandMenu = (props) => {
               >
                 {name}
               </p>
-              {/* <FiChevronRight
-                className={cn(
-                  "text-gary-2 ml-2 h-4 w-4  duration-300 ease-in-out group-hover:rotate-90 ",
-                  {
-                    "rotate-90": open,
-                  },
-                )}
-              /> */}
             </div>
           </div>
         ) : <div>{icon}</div>}

@@ -69,7 +69,7 @@ const DropdownUser = () => {
           <li className="border-b border-stroke p-5">
             <Link
               href="https://www.linkedin.com/in/joshuedev/"
-              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-violet-500 lg:text-base"
+              className="flex items-center gap-3 text-sm font-medium duration-300 ease-in-out hover:text-stone-600 lg:text-base"
             >
               <Icon className="text-black" icon="ph:user" />
               <p className="whitespace-nowrap">My Profile</p>

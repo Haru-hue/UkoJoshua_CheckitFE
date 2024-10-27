@@ -17,6 +17,7 @@
     "dayjs": "^1.11.13",
     "formik": "^2.4.6",
     "next": "15.0.1",
+    "next-themes": "^0.3.0",
     "primereact": "^10.8.4",
     "react": "19.0.0-rc-69d4b800-20241021",
     "react-click-away-listener": "^2.2.3",

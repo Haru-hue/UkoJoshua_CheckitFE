@@ -11,7 +11,7 @@ const LinkItem = (props) => {
     <Link
       className={cn(`group relative flex items-center rounded-lg px-3 py-2 text-gray-3 duration-300 ease-in-out`, {
         "bg-white text-stone-800": pathname === props.href,
-        "hover:text-violet-500": pathname!== props.href,
+        "hover:text-stone-600": pathname!== props.href,
         'justify-center': isSidebarOpen
       })}
       href={props.href}
