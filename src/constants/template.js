@@ -1,9 +1,8 @@
+import { DeleteCapsuleButton } from "@/components/modals/deleteCapsule";
 import { EditCapsuleModal } from "@/components/modals/editCapsule";
 import { ViewCapsuleModal } from "@/components/modals/viewCapsule";
-import { deleteCapsule } from "@/store/features/capsuleSlice";
 import dayjs from "dayjs";
 import { Tag } from "primereact/tag";
-import { useDispatch } from "react-redux";
 
 export const serialBodyTemplate = (rowData) => {
   return <ViewCapsuleModal rowData={rowData}/>;
@@ -42,10 +41,5 @@ export const editTemplate = (rowData) => {
 };
 
 export const deleteTemplate = (rowData) => {
-  const dispatch = useDispatch();
-  return (
-    <button onClick={() => dispatch(deleteCapsule(rowData?.capsule_serial))}>
-      Delete
-    </button>
-  );
+  return <DeleteCapsuleButton rowData={rowData} />
 };
