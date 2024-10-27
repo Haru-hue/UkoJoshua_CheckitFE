@@ -1,15 +1,11 @@
-import Link from "next/link";
 import cn from "classnames";
-import ExpandMenu from "./ExpandMenu";
-import LinkItem from "./LinkItem";
-import { useAppDispatch, useAppSelector } from "@/store";
 import { Icon } from "@iconify/react/dist/iconify.js";
-import { toggleSidebar } from "@/store/features/sidebar";
-import { NavItems } from "@/constants/navItems";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleSidebar } from "@/store/features/sidebarSlice";
 
 const Sidebar = () => {
-  const isSidebarOpen = useAppSelector((state) => state.sidebar.isOpen);
-  const dispatch = useAppDispatch();
+  const isSidebarOpen = useSelector((state) => state.sidebar.isOpen);
+  const dispatch = useDispatch();
 
   return (
     <aside
@@ -32,7 +28,7 @@ const Sidebar = () => {
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         <nav className="p-4 lg:px-6">
           <div>
-            <ul
+            {/* <ul
               className={cn("mb-6 flex flex-col gap-1.5", {
                 "items-center justify-center": !isSidebarOpen,
               })}
@@ -46,7 +42,7 @@ const Sidebar = () => {
                   />
                 </li>
               ))}
-            </ul>
+            </ul> */}
           </div>
         </nav>
       </div>

@@ -2,15 +2,8 @@ import { useAppSelector } from "@/store";
 import cn from "classnames";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ReactNode } from "react";
 
-type Props = {
-  icon?: ReactNode;
-  title: string;
-  href: string;
-};
-
-const LinkItem = (props: Props) => {
+const LinkItem = (props) => {
   const { title } = props;
   const isSidebarOpen = useAppSelector((state) => state.sidebar.isOpen);
   const pathname = usePathname()
