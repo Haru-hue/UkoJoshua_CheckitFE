@@ -23,7 +23,7 @@ const capsulesSlice = createSlice({
     },
     updateCapsule: (state, action) => {
       const index = state.items.findIndex((capsule) => capsule.capsule_serial === action.payload.capsule_serial);
-      if (index >= 0) state.items[index] = action.payload;
+      if (index >= 0) state.items[index] = {...state.items[index], ...action.payload};
     },
     deleteCapsule: (state, action) => {
       state.items = state.items.filter((capsule) => capsule.capsule_serial !== action.payload);

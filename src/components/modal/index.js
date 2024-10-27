@@ -1,6 +1,7 @@
 import { Dialog } from "primereact/dialog";
 
 export const Modal = ({ isOpen, onClose, children, header, ...rest }) => {
+  console.log(isOpen)
   return (
     <div>
       <Dialog
