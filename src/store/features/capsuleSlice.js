@@ -16,14 +16,17 @@ const capsulesSlice = createSlice({
   },
   reducers: {
     addCapsule: (state, action) => {
-      state.items.push(action.payload);
+      const exists = state.items.some((capsule) => capsule.capsule_id === action.payload.capsule_id);
+      if (!exists) {
+        state.items.push(action.payload);
+      }
     },
     updateCapsule: (state, action) => {
       const index = state.items.findIndex((capsule) => capsule.capsule_id === action.payload.capsule_id);
       if (index >= 0) state.items[index] = action.payload;
     },
     deleteCapsule: (state, action) => {
-      state.items = state.items.filter((capsule) => capsule.capsule_id !== action.payload);
+      state.items = state.items.filter((capsule) => capsule.capsule_serial !== action.payload);
     },
   },
   extraReducers: (builder) => {
