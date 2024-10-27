@@ -1,6 +1,13 @@
+import { useState } from "react";
 import { DataCard } from "../cards/DataCard";
+import { Table } from "../table/Table";
+import { useQuery } from "react-query";
+import { fetchAllCapsules } from "@/pages/api/data";
 
 export const Dashboard = () => {
+    const [listOfCapsules, setListOfCapsules] = useState(null)
+
+    const { data, isLoading} = useQuery(['listOfCapsules'], fetchAllCapsules)
   return (
     <section>
       <div className="grid grid-cols-3 gap-10">
@@ -14,6 +21,7 @@ export const Dashboard = () => {
         <input className="" placeholder="type"/>
         <button>Filter</button>
       </div>
+      <Table data={data?.data} />
     </section>
   );
 };
