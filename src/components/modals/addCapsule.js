@@ -26,6 +26,7 @@ export const AddCapsuleModal = () => {
         capsule_id: values.capsule_id,
         status: !values?.status?.trim() ? "unknown" : values?.status,
         original_launch: values.original_launch,
+        type: values?.type
       };
       dispatch(addCapsule(newCapsule));
       onClose();
@@ -38,10 +39,10 @@ export const AddCapsuleModal = () => {
   return (
     <>
       <button
-        className="whitespace-nowrap rounded-lg py-2 px-6 bg-slate-300 text-slate-950 flex-field"
+        className="whitespace-nowrap rounded-lg py-2 px-6 bg-slate-300 font-semibold text-slate-950 flex-field"
         onClick={onOpen}
       >
-        Add Filter
+        Add Capsule
       </button>
       <Modal
         header="Add Capsule"
@@ -73,7 +74,14 @@ export const AddCapsuleModal = () => {
                 <option value="unknown">Unknown</option>
               </Field>
             </div>
-            <div className="col-span-2">
+            <div>
+              <label className="block text-gray-700 text-sm pb-1">
+                Type:
+              </label>
+              <Field onBlur={formik.handleBlur} name="type" placeholder="Type" />
+
+            </div>
+            <div>
               <label className="block text-gray-700 text-sm pb-1">
                 Original Launch Date:*{" "}
               </label>
@@ -97,7 +105,7 @@ export const AddCapsuleModal = () => {
             className="bg-stone-700 text-white py-2 px-6 rounded-lg disabled:bg-stone-400 disabled:cursor-not-allowed"
             onClick={formik.handleSubmit}
           >
-            Add User
+            Add Capsule
           </button>
           <button
             className="bg-slate-500 text-slate-950 py-2 px-6 rounded-lg"

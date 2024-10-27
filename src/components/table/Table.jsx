@@ -5,7 +5,8 @@ import { DataTable } from "primereact/datatable";
 export const Table = ({ data }) => {
 
   return (
-    <DataTable value={data} paginator rows={5}>
+    <DataTable value={data} paginator rows={5}  paginatorTemplate="RowsPerPageDropdown FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink"
+    currentPageReportTemplate="{first} to {last} of {totalRecords}">
       <Column body={serialBodyTemplate} header="Capsule ID" />
       <Column field="capsule_serial" header="Capsule Name" />
       <Column body={dateBodyTemplate} header="Original Launch Date" />
