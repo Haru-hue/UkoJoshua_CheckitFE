@@ -31,11 +31,11 @@ export const EditCapsuleModal = ({ rowData }) => {
         header="Edit Capsule"
         isOpen={isOpen}
         onClose={onClose}
-        className="bg-white rounded-xl"
+        className="bg-white rounded-xl min-w-96"
       >
         <h4 className="text-lg py-2">Capsule Details</h4>
         <FormikProvider value={formik}>
-          <div className="grid grid-cols-2 gap-8 pt-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
             <div>
               <label className="block text-gray-700 text-sm pb-1">
                 Capsule ID:*{" "}
@@ -57,7 +57,7 @@ export const EditCapsuleModal = ({ rowData }) => {
                 <option value="unknown">Unknown</option>
               </Field>
             </div>
-            <div className="col-span-2">
+            <div className="md:col-span-2">
               <label className="block text-gray-700 text-sm pb-1">
                 Original launch date:*{" "}
               </label>
