@@ -19,11 +19,11 @@ export const EditCapsuleModal = ({ rowData }) => {
       dispatch(updateCapsule(values));
       onClose();
     },
-    validate: validateSchema,
+    validationSchema: validateSchema,
   });
 
   const today = new Date().toISOString().split("T")[0];
-
+  console.log(formik.errors)
   return (
     <>
       <button aria-label="open edit capsule modal" onClick={onOpen}>Edit</button>
