@@ -13,7 +13,7 @@ A Next.js app for managing SpaceX capsule data with local state additions and ed
 
 ## Demo
 - **Live Demo:** [Link to deployed site](https://uko-joshua-checkit-fe.vercel.app/)  
-- **Video Walkthrough:** [Link to video](#)
+- **Video Walkthrough:** [Link to video](https://www.loom.com/share/41ede0e4362d409aa57595fb640019ce)
 
 ## Features
 - **Capsule Table**: Displays a paginated list of capsules fetched from the SpaceX API, with 5 items per page.
