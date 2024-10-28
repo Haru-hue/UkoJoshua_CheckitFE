@@ -26,7 +26,7 @@ export const AddCapsuleModal = () => {
         capsule_id: values.capsule_id,
         status: !values?.status?.trim() ? "unknown" : values?.status,
         original_launch: values.original_launch,
-        type: values?.type
+        type: values?.type,
       };
       dispatch(addCapsule(newCapsule));
       onClose();
@@ -54,16 +54,28 @@ export const AddCapsuleModal = () => {
         <FormikProvider value={formik}>
           <div className="grid md:grid-cols-2 gap-8 pt-4">
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label
+                htmlFor="capsule_id"
+                className="block text-gray-700 text-sm pb-1"
+              >
                 Capsule ID:*{" "}
               </label>
-              <Field onBlur={formik.handleBlur}  name="capsule_id" placeholder="Capsule ID" />
+              <Field
+                onBlur={formik.handleBlur}
+                name="capsule_id"
+                placeholder="Capsule ID"
+              />
               {formik.touched.capsule_id && formik.errors.capsule_id && (
-                <p className="text-red-500 text-xs pt-1">{formik.errors.capsule_id}</p>
+                <p aria-live="assertive" className="text-red-500 text-xs pt-1">
+                  {formik.errors.capsule_id}
+                </p>
               )}
             </div>
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label
+                htmlFor="status"
+                className="block text-gray-700 text-sm pb-1"
+              >
                 Status{" "}
               </label>
               <Field as="select" placeholder="Select status" name="status">
@@ -75,14 +87,20 @@ export const AddCapsuleModal = () => {
               </Field>
             </div>
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label
+                htmlFor="type"
+                className="block text-gray-700 text-sm pb-1"
+              >
                 Type:
               </label>
-              <Field onBlur={formik.handleBlur} name="type" placeholder="Type" />
-
+              <Field
+                onBlur={formik.handleBlur}
+                name="type"
+                placeholder="Type"
+              />
             </div>
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label htmlFor="original_launch" className="block text-gray-700 text-sm pb-1">
                 Original Launch Date:*{" "}
               </label>
               <Field
@@ -93,9 +111,12 @@ export const AddCapsuleModal = () => {
                 placeholder="Capsule ID"
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.original_launch && formik.errors.original_launch && (
-                <p className="text-red-500 text-xs pt-1">{formik.errors.original_launch}</p>
-              )}
+              {formik.touched.original_launch &&
+                formik.errors.original_launch && (
+                  <p aria-live="assertive" className="text-red-500 text-xs pt-1">
+                    {formik.errors.original_launch}
+                  </p>
+                )}
             </div>
           </div>
         </FormikProvider>
@@ -104,6 +125,7 @@ export const AddCapsuleModal = () => {
             disabled={!formik.isValid}
             className="bg-stone-700 text-white py-2 px-6 rounded-lg disabled:bg-stone-400 disabled:cursor-not-allowed"
             onClick={formik.handleSubmit}
+            aria-label="submit add capsule details"
           >
             Add Capsule
           </button>

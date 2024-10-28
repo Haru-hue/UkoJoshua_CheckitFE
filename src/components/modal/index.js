@@ -1,9 +1,9 @@
 import { Dialog } from "primereact/dialog";
 
 export const Modal = ({ isOpen, onClose, children, header, ...rest }) => {
-  console.log(isOpen)
+  
   return (
-    <div>
+    <div role="dialog" aria-modal='true'>
       <Dialog
         visible={isOpen}
         onHide={onClose}

@@ -26,7 +26,7 @@ export const EditCapsuleModal = ({ rowData }) => {
 
   return (
     <>
-      <button onClick={onOpen}>Edit</button>
+      <button aria-label="open edit capsule modal" onClick={onOpen}>Edit</button>
       <Modal
         header="Edit Capsule"
         isOpen={isOpen}
@@ -37,16 +37,16 @@ export const EditCapsuleModal = ({ rowData }) => {
         <FormikProvider value={formik}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label htmlFor="capsule_id" className="block text-gray-700 text-sm pb-1">
                 Capsule ID:*{" "}
               </label>
               <Field onBlur={formik.handleBlur} name="capsule_id" placeholder="Capsule ID" />
               {formik.touched.capsule_id && formik.errors.capsule_id && (
-                <p className="text-red-500 text-xs pt-1">{formik.errors.capsule_id}</p>
+                <p aria-live="assertive" className="text-red-500 text-xs pt-1">{formik.errors.capsule_id}</p>
               )}
             </div>
             <div>
-              <label className="block text-gray-700 text-sm pb-1">
+              <label htmlFor="status" className="block text-gray-700 text-sm pb-1">
                 Status{" "}
               </label>
               <Field as="select" placeholder="Select status" name="status">
@@ -58,7 +58,7 @@ export const EditCapsuleModal = ({ rowData }) => {
               </Field>
             </div>
             <div className="md:col-span-2">
-              <label className="block text-gray-700 text-sm pb-1">
+              <label htmlFor="original_launch" className="block text-gray-700 text-sm pb-1">
                 Original launch date:*{" "}
               </label>
               <Field
@@ -68,7 +68,7 @@ export const EditCapsuleModal = ({ rowData }) => {
                 name="original_launch"
               />
               {formik.touched.original_launch && formik.errors.original_launch && (
-                <p className="text-red-500 text-xs pt-1">{formik.errors.original_launch}</p>
+                <p aria-live="assertive" className="text-red-500 text-xs pt-1">{formik.errors.original_launch}</p>
               )}
             </div>
           </div>
